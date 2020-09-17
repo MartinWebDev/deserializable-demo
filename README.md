@@ -7,9 +7,9 @@ not be suitable in other places such as components, or services.
 I found a way to solve this using a deserializer, but later also thought that similar could be done just with a normal constructor. 
 
 ## What exactly is the problem?
-If we go to the app component, and in the subscription for our normal getUsers call ("getUsersJson()"), which just returns the json result directly, 
+If we go to the app component, and in the subscription for our normal getUsers call ("*getUsersJson()*"), which just returns the json result directly, 
 which just happens to be the same shape as we User model.\
-If we try to add a call to the function on the model "tellMeSomething()", 
+If we try to add a call to the function on the model *"tellMeSomething()"*, 
 we will see that typescript is happy with this.\
 It can autocomplete this for us, and will compile without issue. As far as typescript is aware, 
 this is absolutely fine because we are expecting a User object (array) to be returned. However, this isn't actually what we get.
