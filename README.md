@@ -8,11 +8,14 @@ I found a way to solve this using a deserializer, but later also thought that si
 
 ## What exactly is the problem?
 If we go to the app component, and in the subscription for our normal getUsers call ("getUsersJson()"), which just returns the json result directly, 
-which just happens to be the same shape as we User model. If we try to add a call to the function on the model "tellMeSomething()", 
-we will see that typescript is happy with this. It can autocomplete this for us, and will compile without issue. As far as typescript is aware, 
-this is absolutely fine because we are expecting a User object (array) to be returned. However, this isn't actually what we get. 
+which just happens to be the same shape as we User model.\
+If we try to add a call to the function on the model "tellMeSomething()", 
+we will see that typescript is happy with this.\
+It can autocomplete this for us, and will compile without issue. As far as typescript is aware, 
+this is absolutely fine because we are expecting a User object (array) to be returned. However, this isn't actually what we get.
+
 Although the observable in the service has told us we are going to return an array of user object, we actually just get the raw json from the api call. 
-Raw json does not have any additional properties, like our functions, and therefore this is lost. 
+Raw json does not have any additional properties, like our functions, and therefore this is lost.\
 We can address this by manually converting the json into actual objects, either through deserialization or through constructor functions. 
 
 # IDeserializable vs Constructor
