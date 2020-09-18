@@ -1,13 +1,17 @@
 import { CarSpecs, CarSpecsDeserialized } from './carSpecs';
 import { IDeserializable } from '../interfaces/IDeserializable';
 
-export class Car {
+abstract class CarBase {
     make: string;
     model: string;
     color: string;
+}
+
+export class Car extends CarBase {
     carSpecs: CarSpecs;
 
     constructor(car: Car) {
+        super();
         this.make = car.make;
         this.model = car.model;
         this.color = car.color;
@@ -19,10 +23,7 @@ export class Car {
     }
 }
 
-export class CarDeserialized implements IDeserializable<CarDeserialized> {
-    make: string;
-    model: string;
-    color: string;
+export class CarDeserialized extends CarBase implements IDeserializable<CarDeserialized> {
     carSpecs: CarSpecsDeserialized;
 
     getFullName(): string {
@@ -31,7 +32,6 @@ export class CarDeserialized implements IDeserializable<CarDeserialized> {
 
     deserialize(input: CarDeserialized): CarDeserialized {
         Object.assign(this, input);
-
         this.carSpecs = new CarSpecsDeserialized().deserialize(input.carSpecs);
 
         return this;

@@ -32,7 +32,6 @@ export class UserDeserialized implements IDeserializable<UserDeserialized> {
 
     deserialize(input: UserDeserialized): UserDeserialized {
         Object.assign(this, input);
-
         this.cars = input.cars.map(c => new CarDeserialized().deserialize(c));
         this.userInfo = new UserInfoDeserialized().deserialize(input.userInfo);
 
