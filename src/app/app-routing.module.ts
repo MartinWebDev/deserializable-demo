@@ -2,8 +2,9 @@ import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
 
 const routes: Routes = [
-  { path: "",   redirectTo: "/start", pathMatch: "full" },
-  { path: "**",   redirectTo: "/start", pathMatch: "full" }
+  { path: "skills", loadChildren: () => import("./modules/skills/skills.module").then(x => x.SkillsModule) },
+  { path: "", redirectTo: "/start", pathMatch: "full" },
+  { path: "**", redirectTo: "/start", pathMatch: "full" }
 ];
 
 @NgModule({
